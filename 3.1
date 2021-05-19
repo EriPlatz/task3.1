@@ -1,0 +1,23 @@
+
+#include <Adafruit_DHT.h>
+
+#include <Adafruit_DHT.h>
+
+// pin the sensor will read 
+#define SensorPin A3
+
+// Create the dht object
+DHT dht(SensorPin, DHT11);
+
+// Setup the program
+void setup() {
+    // start the sensor
+    dht.begin();
+}
+
+void loop() {
+    String humidity = String(dht.getHumidity());
+    
+    Particle.publish("Humidity %", humidity, PRIVATE);
+    delay(30000);
+}
